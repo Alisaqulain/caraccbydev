@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import Link from "next/link";
 
@@ -15,15 +16,17 @@ export default function Navbar() {
   return (
     <nav className="bg-black border-b-2 border-red-600">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-28">
+        <div className="flex justify-between items-center h-28 md:h-36">
           {/* Logo + Name */}
-          <div className="flex-shrink-0 flex flex-col items-center">
-            <Link href="/" className="flex flex-col items-center">
-              <img src="./car.png" alt="logo" className="w-40 h-24 mt-1 mb-5" />
-              <span className="text-gray-300 text-sm font-semibold pb-2 relative md:absolute top-20">
-             by Abbas Zaidi
-              </span>
-            </Link>
+          <div className="flex flex-row md:flex-col md:items-center">
+            <img
+              src="./car.png"
+              alt="logo"
+              className="w-40 h-24 md:w-48 md:h-28"
+            />
+            <span className="text-gray-300 text-sm font-semibold ml-4 md:ml-0 md:mt-2">
+              by Abbas Zaidi
+            </span>
           </div>
 
           {/* Desktop Menu */}
@@ -32,15 +35,14 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-gray-300 hover:text-white px-5 py-3 text-lg font-medium transition-colors relative
-                after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-red-600
-                after:w-0 hover:after:w-full after:transition-all after:duration-300"
+                className="text-gray-300 hover:text-white px-5 py-3 text-lg font-medium relative
+                  after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-red-600
+                  after:w-0 hover:after:w-full after:transition-all after:duration-300"
               >
                 {link.label}
               </Link>
             ))}
           </div>
-
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
@@ -90,14 +92,13 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-gray-300 hover:text-white block px-3 py-2 text-lg font-medium transition-colors relative
-                after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-red-600
-                after:w-0 hover:after:w-full after:transition-all after:duration-300"
+                className="text-gray-300 hover:text-white block px-3 py-2 text-lg font-medium relative
+                  after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-red-600
+                  after:w-0 hover:after:w-full after:transition-all after:duration-300"
               >
                 {link.label}
               </Link>
             ))}
-
           </div>
         </div>
       )}
