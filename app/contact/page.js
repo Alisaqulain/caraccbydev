@@ -101,22 +101,42 @@ export default function Contact() {
     if (validateForm()) {
       setIsSubmitting(true)
       
-      // Simulate form submission
-      setTimeout(() => {
-        setIsSubmitting(false)
-        setSubmitSuccess(true)
-        setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
-          subject: '',
-          message: ''
-        })
+      try {
+        // Create mailto link with form data
+        const subject = encodeURIComponent(`Contact Form: ${formData.subject}`)
+        const body = encodeURIComponent(`
+Name: ${formData.firstName} ${formData.lastName}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Subject: ${formData.subject}
+
+Message:
+${formData.message}
+        `)
         
-        // Reset success message after 5 seconds
-        setTimeout(() => setSubmitSuccess(false), 5000)
-      }, 2000)
+        // Open email client
+        window.location.href = `mailto:shazizaidi52058@gmail.com?subject=${subject}&body=${body}`
+        
+        // Show success message
+        setTimeout(() => {
+          setIsSubmitting(false)
+          setSubmitSuccess(true)
+          setFormData({
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            subject: '',
+            message: ''
+          })
+          
+          // Reset success message after 5 seconds
+          setTimeout(() => setSubmitSuccess(false), 5000)
+        }, 1000)
+      } catch (error) {
+        setIsSubmitting(false)
+        console.error('Error submitting form:', error)
+      }
     }
   }
 
@@ -128,7 +148,7 @@ export default function Contact() {
         </svg>
       ),
       title: 'Phone',
-      details: ['(555) 123-4567', '(555) 123-4568'],
+      details: ['7456886910', '9045030110'],
       action: 'Call us now'
     },
     {
@@ -138,7 +158,7 @@ export default function Contact() {
         </svg>
       ),
       title: 'Email',
-      details: ['info@accessorycenter.com', 'support@accessorycenter.com'],
+      details: ['shazizaidi52058@gmail.com'],
       action: 'Send us an email'
     },
     {
@@ -190,16 +210,16 @@ export default function Contact() {
                 "contactPoint": [
                   {
                     "@type": "ContactPoint",
-                    "telephone": "(555) 123-4567",
+                    "telephone": "+917456886910",
                     "contactType": "customer service",
-                    "email": "info@accessorycenter.com",
+                    "email": "shazizaidi52058@gmail.com",
                     "availableLanguage": "English"
                   },
                   {
                     "@type": "ContactPoint",
-                    "telephone": "(555) 123-4568",
+                    "telephone": "+919045030110",
                     "contactType": "technical support",
-                    "email": "support@accessorycenter.com"
+                    "email": "shazizaidi52058@gmail.com"
                   }
                 ],
                 "openingHours": [
@@ -247,9 +267,12 @@ export default function Contact() {
                     <p key={idx} className="text-gray-300">{detail}</p>
                   ))}
                 </div>
-                <button className="text-red-400 hover:text-red-300 font-medium transition-colors transform hover:scale-105">
+                <a 
+                  href={method.title === 'Phone' ? `tel:${method.details[0]}` : method.title === 'Email' ? `mailto:${method.details[0]}` : '#'}
+                  className="text-red-400 hover:text-red-300 font-medium transition-colors transform hover:scale-105 inline-block"
+                >
                   {method.action}
-                </button>
+                </a>
               </div>
             ))}
           </div>
@@ -489,10 +512,10 @@ export default function Contact() {
             Our customer support team is available to help you with any urgent questions
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="tel:+15551234567" className="bg-white text-red-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105">
-              Call Now: (555) 123-4567
+            <a href="tel:7456886910" className="bg-white text-red-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105">
+              Call Now: 7456886910
             </a>
-            <a href="mailto:support@accessorycenter.com" className="border-2 border-white text-white hover:bg-white hover:text-red-600 px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105">
+            <a href="mailto:shazizaidi52058@gmail.com" className="border-2 border-white text-white hover:bg-white hover:text-red-600 px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105">
               Email Support
             </a>
           </div>

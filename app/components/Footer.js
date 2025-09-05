@@ -41,10 +41,10 @@ export default function Footer() {
             <h3 className="text-white font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li><Link href="/products" className="text-gray-400 hover:text-white text-sm transition-colors">All Products</Link></li>
-              <li><Link href="/products/performance" className="text-gray-400 hover:text-white text-sm transition-colors">Performance</Link></li>
-              <li><Link href="/products/exterior" className="text-gray-400 hover:text-white text-sm transition-colors">Exterior</Link></li>
-              <li><Link href="/products/interior" className="text-gray-400 hover:text-white text-sm transition-colors">Interior</Link></li>
-              <li><Link href="/products/wheels" className="text-gray-400 hover:text-white text-sm transition-colors">Wheels & Tires</Link></li>
+              <li><Link href="/products" className="text-gray-400 hover:text-white text-sm transition-colors">Performance</Link></li>
+              <li><Link href="/products" className="text-gray-400 hover:text-white text-sm transition-colors">Exterior</Link></li>
+              <li><Link href="/products" className="text-gray-400 hover:text-white text-sm transition-colors">Interior</Link></li>
+              <li><Link href="/products" className="text-gray-400 hover:text-white text-sm transition-colors">Wheels & Tires</Link></li>
             </ul>
           </div>
 
@@ -55,15 +55,15 @@ export default function Footer() {
               <p>The Accessory Center</p>
               <p>Sadaat Hostel, Arya Samaj Road, Muzaffarnagar
               </p>
-              <p>Phone: (555) 123-4567</p>
-              <p>Email: info@accessorycenter.com</p>
+              <p>Phone: <a href="tel:7456886910" className="text-red-400 hover:text-red-300 transition-colors">7456886910</a>, <a href="tel:9045030110" className="text-red-400 hover:text-red-300 transition-colors">9045030110</a></p>
+              <p>Email: <a href="mailto:shazizaidi52058@gmail.com" className="text-red-400 hover:text-red-300 transition-colors">shazizaidi52058@gmail.com</a></p>
             </div>
           </div>
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
           <p className="text-gray-400 text-sm">
-            © 2025 DevSphere Solutions. All rights reserved.
+            © 2025 Developed by <a href="https://devspheresolutions.in/" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:text-red-300 transition-colors">DevSphere Solutions</a>. All rights reserved.
           </p>
         </div>
       </div>

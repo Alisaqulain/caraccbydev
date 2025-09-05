@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Head from 'next/head'
+import Alert from '../components/Alert'
 
 export default function Products() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -9,6 +10,8 @@ export default function Products() {
   const [sortBy, setSortBy] = useState('name')
   const [viewMode, setViewMode] = useState('grid')
   const [isLoading, setIsLoading] = useState(true)
+  const [alert, setAlert] = useState({ show: false, message: '', type: 'success' })
+  const [favorites, setFavorites] = useState(new Set())
 
   // Simulate loading
   useEffect(() => {
@@ -202,6 +205,45 @@ export default function Products() {
     return stars
   }
 
+  const handleAddToCart = (product) => {
+    setAlert({
+      show: true,
+      message: `${product.name} added to cart! We'll contact you soon for order confirmation.`,
+      type: 'success'
+    });
+  };
+
+  const handleToggleFavorite = (productId) => {
+    const newFavorites = new Set(favorites);
+    if (newFavorites.has(productId)) {
+      newFavorites.delete(productId);
+      setAlert({
+        show: true,
+        message: 'Removed from favorites',
+        type: 'info'
+      });
+    } else {
+      newFavorites.add(productId);
+      setAlert({
+        show: true,
+        message: 'Added to favorites!',
+        type: 'success'
+      });
+    }
+    setFavorites(newFavorites);
+  };
+
+  const handleContactExpert = () => {
+    setAlert({
+      show: true,
+      message: 'Redirecting to contact page...',
+      type: 'info'
+    });
+    setTimeout(() => {
+      window.location.href = '/contact';
+    }, 1000);
+  };
+
   return (
     <>
       <Head>
@@ -247,6 +289,14 @@ export default function Products() {
         />
       </Head>
       <div className="min-h-screen bg-gray-900">
+      {/* Alert Component */}
+      <Alert 
+        show={alert.show} 
+        message={alert.message} 
+        type={alert.type} 
+        onClose={() => setAlert({ ...alert, show: false })} 
+      />
+      
       {/* Loading Animation */}
       {isLoading && (
         <div className="fixed inset-0 bg-gray-900 z-50 flex items-center justify-center">
@@ -414,14 +464,24 @@ export default function Products() {
                     </div>
 
                     <div className="mt-auto flex gap-2">
-                      <button className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2">
+                      <button 
+                        onClick={() => handleAddToCart(product)}
+                        className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg font-medium transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+                      >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                         </svg>
                         Add to Cart
                       </button>
-                      <button className="px-4 py-2 border border-gray-600 text-gray-300 hover:bg-gray-700 rounded-lg transition-all duration-300 transform hover:scale-110 group">
-                        <svg className="w-5 h-5 group-hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <button 
+                        onClick={() => handleToggleFavorite(product.id)}
+                        className={`px-4 py-2 border rounded-lg transition-all duration-300 transform hover:scale-110 group ${
+                          favorites.has(product.id) 
+                            ? 'border-red-500 bg-red-500 text-white' 
+                            : 'border-gray-600 text-gray-300 hover:bg-gray-700'
+                        }`}
+                      >
+                        <svg className={`w-5 h-5 ${favorites.has(product.id) ? 'text-white' : 'group-hover:text-red-500'}`} fill={favorites.has(product.id) ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                       </button>
@@ -446,7 +506,10 @@ export default function Products() {
           <p className="text-xl text-red-100 mb-8">
             Our automotive experts are here to help you find the perfect accessories for your vehicle
           </p>
-          <button className="bg-white text-red-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+          <button 
+            onClick={handleContactExpert}
+            className="bg-white text-red-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+          >
             Contact Our Experts
           </button>
         </div>

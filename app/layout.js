@@ -10,7 +10,7 @@ export const metadata = {
     default: 'The Accessory Center Muzaffarnagar - Premium Car Accessories & Modifications',
     template: '%s | The Accessory Center MZN'
   },
-  description: 'Transform your ride with premium car accessories in Muzaffarnagar. Expert installation, quality products, and exceptional service. Shop speakers, headlights, horns, LED lights, and complete car customization services.',
+  description: 'Transform your ride with premium car accessories in Muzaffarnagar. Expert installation, quality products, and exceptional service. Shop speakers, headlights, horns, LED lights, and complete car customization services. Contact: 7456886910, 9045030110',
   keywords: [
     'car accessories muzaffarnagar',
     'automotive parts muzaffarnagar',
@@ -31,15 +31,19 @@ export const metadata = {
     'car customization muzaffarnagar',
     'automotive services muzaffarnagar',
     'car accessories near me',
-    'auto parts store muzaffarnagar'
+    'auto parts store muzaffarnagar',
+    'car accessories up',
+    'car modification muzaffarnagar',
+    'premium car accessories',
+    'car styling muzaffarnagar'
   ],
-  authors: [{ name: 'The Accessory Center' }],
+  authors: [{ name: 'The Accessory Center', url: 'https://theaccessorycentermzn.in' }],
   creator: 'The Accessory Center',
   publisher: 'The Accessory Center',
   formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
+    email: true,
+    address: true,
+    telephone: true,
   },
   metadataBase: new URL('https://theaccessorycentermzn.in'),
   alternates: {
@@ -55,10 +59,10 @@ export const metadata = {
         url: '/logo.jpg',
         width: 1200,
         height: 630,
-        alt: 'The Accessory Center - Premium Car Accessories',
+        alt: 'The Accessory Center - Premium Car Accessories Muzaffarnagar',
       },
     ],
-    locale: 'en_US',
+    locale: 'en_IN',
     type: 'website',
   },
   twitter: {
@@ -66,7 +70,7 @@ export const metadata = {
     title: 'The Accessory Center Muzaffarnagar - Premium Car Accessories',
     description: 'Transform your ride with premium car accessories in Muzaffarnagar. Expert installation, quality products, and exceptional service.',
     images: ['/logo.jpg'],
-    creator: '@accessorycenter',
+    creator: '@accessorycentermzn',
   },
   robots: {
     index: true,
@@ -83,6 +87,16 @@ export const metadata = {
     google: 'your-google-verification-code',
     yandex: 'your-yandex-verification-code',
     yahoo: 'your-yahoo-verification-code',
+  },
+  other: {
+    'contact:phone_number': '+917456886910',
+    'contact:phone_number_2': '+919045030110',
+    'contact:email': 'shazizaidi52058@gmail.com',
+    'contact:street_address': 'Sadaat Hostel, Arya Samaj Road',
+    'contact:locality': 'Muzaffarnagar',
+    'contact:region': 'Uttar Pradesh',
+    'contact:postal_code': '251002',
+    'contact:country_name': 'India',
   },
 }
 
