@@ -12,6 +12,7 @@ export default function Home() {
   const [ref2, inView2] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [ref3, inView3] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [ref4, inView4] = useInView({ triggerOnce: true, threshold: 0.1 });
+  const [refFr, inViewFr] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [alert, setAlert] = useState({ show: false, message: '', type: 'success' });
 
   // Parallax effect for hero section
@@ -408,6 +409,47 @@ export default function Home() {
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Franchise Promo Section */}
+      <section
+        ref={refFr}
+        className={`py-16 px-6 w-full transition-all duration-700 ${
+          inViewFr ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-gray-800 rounded-2xl p-8">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Open Our Franchise In Your City</h2>
+            <p className="text-gray-300 mb-6">
+              Join a trusted brand in automotive accessories. Get full training, supplier onboarding,
+              and marketing support to launch successfully.
+            </p>
+            <div className="flex gap-3">
+              <a
+                href="/franchise/contact"
+                className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300"
+              >
+                Apply For Franchise
+              </a>
+              <a
+                href="/franchise"
+                className="border border-gray-500 text-gray-200 hover:bg-gray-700 px-6 py-3 rounded-lg font-semibold transition-all duration-300"
+              >
+                Learn More
+              </a>
+            </div>
+          </div>
+          <div className="relative h-64 md:h-80 rounded-xl overflow-hidden">
+            <Image
+              src="/pfirst.jpg"
+              alt="Franchise store setup"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
           </div>
         </div>
       </section>
